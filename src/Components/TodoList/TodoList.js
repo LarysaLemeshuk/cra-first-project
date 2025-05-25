@@ -13,10 +13,31 @@ class TodoList extends React.Component {
     };
   }
 
+  removeTask(taskIdToRemove) {
+    const { todoList } = this.state;
+
+    const filteredArray = todoList.filter((task) => task.id !== taskIdToRemove);
+
+    this.setState({
+      todoList: filteredArray,
+    });
+  }
+
   renderLi() {
     const { todoList } = this.state;
 
-    return todoList.map((task) => <li key={task.id}>{task.text}</li>);
+    return todoList.map((task) => (
+      <li key={task.id}>
+        {task.text}
+        <button
+          onClick={() => {
+            this.removeTask(task.id);
+          }}
+        >
+          delete
+        </button>
+      </li>
+    ));
   }
 
   render() {
