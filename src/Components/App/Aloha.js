@@ -23,8 +23,17 @@ class Aloha extends React.Component {
 
     const greetingText = this.state.isGreeting ? 'Hello' : 'Bye';
 
-    return  <h1 onClick={() => {this.clickHandler()}}> {greetingText} {this.props.name}</h1>
-    
+    return (
+      <h1
+        onClick={() => {
+          this.clickHandler();
+        }}
+      >
+        {' '}
+        {greetingText} {this.props.firstName} {this.props.lastName}
+      </h1>
+    );
+
     // P.S  Не забудьте підписати обробник подій кліку, розроблений у п.2
   }
 }
