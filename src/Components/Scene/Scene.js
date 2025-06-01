@@ -19,6 +19,8 @@ class Scene extends React.Component {
     });
   }
 
+  
+
   render() {
     const { isLight } = this.state;
 
@@ -39,8 +41,7 @@ export default Scene;
 
 /*
 Parent -> Child - props
-Child -> Perent -callback
-
-callback pattern
+Child -> Parent -callback pattern
+Child -> Child - parent
 
 */
