@@ -3,34 +3,36 @@ import Toggler from './Toggler';
 import './style.css';
 
 class Scene extends React.Component {
- constructor(props){
+  constructor(props) {
     super(props);
 
-    this.state={
-        isLight: true
-    }
- }
+    this.state = {
+      isLight: true,
+    };
+  }
 
- toggleScene(){
+  toggleScene() {
     this.setState({
-        isLight: !this.state.isLight
-    })
- }
-  
+      isLight: !this.state.isLight,
+    });
+  }
 
   render() {
- const{isLight}= this.state
+    const { isLight } = this.state;
 
     return (
-      <div className={isLight ? "scene-on" : "scene-off"}>
-        <Toggler changeParentState={() => {this.toggleScene()}}/>
+      <div className={isLight ? 'scene-on' : 'scene-off'}>
+        <Toggler
+          changeParentState={() => {
+            this.toggleScene();
+          }}ButtonText={isLight ? 'OFF' : 'ON'}
+        />
       </div>
     );
   }
 }
 
 export default Scene;
-
 
 /*
 Parent -> Child - props
