@@ -1,4 +1,5 @@
 import React from 'react';
+import TodoItem from './TodoItem';
 
 class TodoList extends React.Component {
   constructor(props) {
@@ -27,16 +28,14 @@ class TodoList extends React.Component {
     const { todoList } = this.state;
 
     return todoList.map((task) => (
-      <li key={task.id}>
-        {task.text}
-        <button
-          onClick={() => {
-            this.removeTask(task.id);
-          }}
-        >
-          delete
-        </button>
-      </li>
+      <TodoItem
+        key={task.id}
+        text={task.text}
+        id={task.id}
+        delCallback={() => {
+          this.removeTask(task.id);
+        }}
+      />
     ));
   }
 
