@@ -5,6 +5,7 @@ import TodoList from './Components/TodoList/TodoList';
 import Scene from './Components/Scene/Scene';
 import Counter from './Counter/Counter';
 import CounterPage from './Counter/CounterPage';
+import UserList from './Components/UserList/UserList';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<CounterPage/>);
+root.render(< UserList/>);
