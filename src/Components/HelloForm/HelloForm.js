@@ -13,6 +13,11 @@ class HelloForm extends React.Component {
 
   submitHandler = (event) => {
     event.preventDefault();
+    const {
+      props: { sendUserNameToParent },
+      state: name,
+    } = this;
+    sendUserNameToParent(name);
   };
 
   changeHandler = ({ target: { value } }) => {
@@ -25,7 +30,12 @@ class HelloForm extends React.Component {
     const { name } = this.state;
     return (
       <form onSubmit={this.submitHandler}>
-        <intput type="text" placeholder="Type your text" value={name} />
+        <intput
+          type="text"
+          placeholder="Type your text"
+          value={name}
+          onChange={this.changeHandler}
+        />
         <button type="submit">Send my name</button>
       </form>
     );
