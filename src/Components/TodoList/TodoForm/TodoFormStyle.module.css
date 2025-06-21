@@ -2,3 +2,13 @@
     background-color: blueviolet;
     border: 4px dashed red;
 }
+
+.invalid-input {
+    border: 6ps solid rgb(0, 149, 255);
+    background-color: yellow;
+}
+
+.input{
+    height: 40px;
+    background-color: cadetblue;
+}
