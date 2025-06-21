@@ -1,6 +1,7 @@
 // TodoForm  - класова компонента
 import React, { Component } from 'react';
 import styles from './TodoFormStyle.module.css';
+import cx from 'classnames'
 
 // '*' - заборонений символ
 
@@ -78,16 +79,16 @@ export default TodoForm;
 ‹input class="input invalid-input" >
 */
 
-function cx(objectClassNames) {
-  // const cort = Object.entries(objectClassNames);
-  // const filteredArray = cort.filter(([className, condition]) => condition);
-  // const maparray = filteredArray.map(([className, condition]) => className);
-  // return maparray.join(' ');
-  return Object.entries(objectClassNames)
-    .filter(([className, condition]) => condition)
-    .map(([className, condition]) => className)
-    .join(' ');
-}
+// function cx(objectClassNames) {
+//   // const cort = Object.entries(objectClassNames);
+//   // const filteredArray = cort.filter(([className, condition]) => condition);
+//   // const maparray = filteredArray.map(([className, condition]) => className);
+//   // return maparray.join(' ');
+//   return Object.entries(objectClassNames)
+//     .filter(([className, condition]) => condition)
+//     .map(([className, condition]) => className)
+//     .join(' ');
+// }
 
 /*
 objectClassNames ={
