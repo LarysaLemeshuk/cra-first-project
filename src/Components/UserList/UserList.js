@@ -1,27 +1,42 @@
 import React from 'react';
 import UserCard from './UserCard';
 import { getUsers } from '../../API';
+import { ClipLoader, HashLoader } from 'react-spinners';
 
 class UserList extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       users: [],
       filteredUsers: [],
       userCount: 100,
+      isLoading: true,
+      isError: false,
     };
   }
 
   componentDidMount() {
     const { userCount } = this.state;
 
-    getUsers(userCount).then((data) => {
-      const { results } = data;
+    getUsers(userCount)
+      .then((data) => {
+        const { results } = data;
 
-      this.setState({
-        users: results,
+        this.setState({
+          users: results,
+        });
+      })
+      .catch((error) => {
+        this.setState({
+          isError: error,
+        });
+      })
+      .finally(() => {
+        this.setState({
+          isLoading: false,
+        });
       });
-    });
   }
 
   renderUsers = () => {
@@ -36,8 +51,10 @@ class UserList extends React.Component {
   clickHandler = () => {
     getUsers().then((data) => {
       const { results } = data;
+
       const tempArray = this.state.users;
       tempArray.push(results[0]);
+
       this.setState({
         users: tempArray,
       });
@@ -73,7 +90,7 @@ class UserList extends React.Component {
     });
   };
 
-  handelSetUserCount = (event) => {
+  handleSetUserCount = (event) => {
     const {
       target: { value },
     } = event;
@@ -85,42 +102,63 @@ class UserList extends React.Component {
   handleLoadUsersClick = () => {
     const { userCount } = this.state;
 
-    getUsers(userCount).then((data) => {
-      const { results } = data;
+    getUsers(userCount)
+      .then((data) => {
+        const { results } = data;
 
-      const tempArray = this.state.users;
-      results.forEach((user) => {
-        tempArray.push(user);
-      });
+        const tempArray = this.state.users;
+        results.forEach((user) => {
+          tempArray.push(user);
+        });
 
-      this.setState({
-        users: tempArray,
+        this.setState({
+          users: tempArray,
+        });
+      })
+      .catch((error) => {
+        this.setState({
+          isError: error,
+        });
+      })
+      .finally(() => {
+        this.setState({
+          isLoading: false,
+        });
       });
-    });
   };
 
   render() {
-    const { users } = this.state;
+    const { users, isLoading, isError } = this.state;
 
     return (
       <>
-        <h1 className="">Users List</h1>
+        <h1 className="header-text">Users List</h1>
 
         <input
           type="number"
           min={1}
-          max={500}
-          onChange={this.handelSetUserCount}
+          max={300}
+          onChange={this.handleSetUserCount}
         />
-        <button onClick={this.handelLoadUsersClick}>Load users</button>
+        <button onClick={this.handleLoadUsersClick}>Load users</button>
         <input
           type="text"
           placeholder="Search by lastname"
           onChange={this.handleSearcg}
         />
         <button onClick={() => this.clickHandler()}> Add user</button>
+
+        {isLoading && (
+          <HashLoader
+            color="#36d7b7"
+            size={500}
+            cssOverride={{ display: 'block', margin: '0 auto' }}
+          />
+        )}
+        {isError && <h2>{isError.message}</h2>}
+
         <section className="card-container">
-          {users.length ? this.renderUsers() : <h2> Users loading....</h2>}
+          {users.length ? this.renderUsers() : null}
         </section>
       </>
     );
