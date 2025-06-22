@@ -3,9 +3,7 @@ import UserList from './UserList/UserList.js';
 import TodoList from './TodoList/TodoList.js';
 
 function App() {
-  return (< TodoList/>)
+  return <UserList />;
 }
 
 export default App;
-
-
