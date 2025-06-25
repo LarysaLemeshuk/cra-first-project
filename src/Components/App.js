@@ -55,11 +55,21 @@ function App() {
       </button>
       <button
         onClick={() => {
-          window.navigator.clipboard.readText()
-          .then((text) => {
-        console.log(text);
+          window.navigator.clipboard.readText().then((text) => {
+            console.log(text);
           });
-        }}> Read text from buffer
+        }}
+      >
+        {' '}
+        Read text from buffer
+      </button>
+      <button
+        onClick={() => {
+          window.navigator.geolocation.getCurrentPosition((positionObject)=>{
+            console.log(positionObject);
+          })
+        }}
+      > Get my current position
       </button>
     </>
   );
