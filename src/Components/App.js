@@ -44,11 +44,23 @@ function App() {
       </button>
 
       <p>lorem ipsum dolor</p>
-      <button onClick={() => {
+      <button
+        onClick={() => {
           window.navigator.clipboard.writeText('orem ipsum dolo');
-          toast.success('🦄Copied to clipboard')
+          toast.success('🦄Copied to clipboard');
         }}
-      > Click to copi text</button>
+      >
+        {' '}
+        Click to copi text
+      </button>
+      <button
+        onClick={() => {
+          window.navigator.clipboard.readText()
+          .then((text) => {
+        console.log(text);
+          });
+        }}> Read text from buffer
+      </button>
     </>
   );
 }
