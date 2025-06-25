@@ -1,8 +1,25 @@
 import React from 'react';
-import UserList from './UserList/UserList';
 
 function App() {
-  return <UserList />;
+  return (
+    <>
+      <button
+        onClick={() => {
+          window.close();
+        }}
+      >
+        Close page
+      </button>
+      ;
+      <button
+        onClick={() => {
+          window.open('https://developer.mozilla.org/en-US/');
+        }}
+      >
+        Close GH
+      </button>
+      ;
+    </>
+  );
 }
-
 export default App;
