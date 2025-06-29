@@ -31,6 +31,32 @@ function App() {
           );
         }}
       </DataProvider>
+
+      <DataProvider
+        loadData={() => {
+          return fetch('./tv.json').then((response) => response.json());
+        }}
+      >
+        {(state) => {
+          const { data, isLoading, isError } = state;
+
+          return (
+            <>
+              {isLoading && <div>Loading......</div>}
+              {isError && <div>Error happening: {isError.message}</div>}
+
+              <ol>
+                {data.map((data, index) => (
+                  <li key={index}>
+                    Brand: {data.brand} --- Model: {data.model} --- Price:
+                    {data.price}
+                  </li>
+                ))}
+              </ol>
+            </>
+          );
+        }}
+      </DataProvider>
     </>
   );
 }
