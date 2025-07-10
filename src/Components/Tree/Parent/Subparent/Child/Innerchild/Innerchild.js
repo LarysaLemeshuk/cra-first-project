@@ -2,23 +2,22 @@ import React from 'react';
 import { UserContext } from '../../../../../../contexts/userContext';
 
 const Innerchild = (props) => {
-//   const {
-//     user: { firsName, lastName, email, avatar } = {}} = props;
+  //   const {
+  //     user: { firsName, lastName, email, avatar } = {}} = props;
   return (
-   
-
-<UserContext.Consumer>
-    {(firsName, lastName, email, avatar) => {
-        return(
-            <div style={{ border: '3px solid black', padding: '25px' }}>
-            I`m InnerChild
+    <UserContext.Consumer>
+      {({ user: { firstName, lastName, email, avatar }, logOut }) => {
+        return (
+          <div style={{ border: '3px solid black', padding: '25px' }}>
+            I`m Inner Child
+            <button onClick={logOut}> log out</button>
             <p>
-              {firsName} {lastName} {email}
+              {firstName} {lastName} {email}
             </p>
           </div>
-        )
-    }}
-</UserContext.Consumer>
+        );
+      }}
+    </UserContext.Consumer>
   );
 };
 
