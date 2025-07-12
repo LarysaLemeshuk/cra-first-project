@@ -8,7 +8,7 @@ const Innerchild = (props) => {
     <UserContext.Consumer>
       {({ user: { firstName, lastName, email, avatar }, logOut }) => {
         return (
-          <div>
+          <div style={{ border: '1px solid blak' }}>
             I`m Inner Child
             <button onClick={logOut}> log out</button>
             <p>
