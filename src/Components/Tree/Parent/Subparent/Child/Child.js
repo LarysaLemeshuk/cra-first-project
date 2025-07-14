@@ -8,7 +8,7 @@ const Child = (props) => {
     <UserContext.Consumer>
       {({ user }) => {
         return (
-          <div className={styles.border}>
+          <div className={`${styles.border} ${styles.container}`}>
             Child
             <img
               className={styles.img}

@@ -1,5 +1,5 @@
 import React from 'react';
-import Tree from './Tree/Tree';
+import TreeWithTheme from './Tree/Tree';
 import { UserContext } from '../contexts/userContext';
 import { ThemeContext } from '../contexts/themeContext';
 import CONSTANTS from '../constants';
@@ -48,10 +48,13 @@ class App extends React.Component {
           }}
         >
           App
-          <Tree />
+          <TreeWithTheme />
         </UserContext.Provider>
       </ThemeContext.Provider>
     );
   }
 }
 export default App;
+
+
+

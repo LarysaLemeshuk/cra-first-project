@@ -1,13 +1,14 @@
 import React from 'react';
-import Subparent from './Subparent/Subparent';
+import SubParentWithThemeAndUser from './Subparent/Subparent';
+import styles from './Parent.module.css';
 
 const Parent = (props) => {
-    return (
-        <div >
-            Parent
-          <Subparent  />
-        </div>
-      );
+  return (
+    <div className={styles.container}>
+      Parent
+      <SubParentWithThemeAndUser />
+    </div>
+  );
 };
 
 export default Parent;

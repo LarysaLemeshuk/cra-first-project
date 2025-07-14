@@ -6,4 +6,8 @@
 
 .border {
   border: 1px solid black;
+  margin-top: 2px;
+}
+.container {
+    margin: 15px;
 }
