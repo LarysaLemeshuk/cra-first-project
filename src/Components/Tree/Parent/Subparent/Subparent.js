@@ -1,8 +1,7 @@
 import React from 'react';
 import Child from './Child/Child';
-import { UserContext } from '../../../../contexts/userContext';
+import { withTheme, withUser } from '../../../../HOC';
 import CONSTANTS from '../../../../constants';
-import { withTheme } from '../../../../HOC';
 
 const { THEMES } = CONSTANTS;
 
@@ -21,16 +20,10 @@ const Subparent = (props) => {
   );
 };
 
-const SubParentWithThemeAndUser = (props) => {
-  // компонента, яка займається загортанням в консьюмери
-  return (
-    <UserContext.Consumer>
-      {({ user, logOut }) => {
-        const SubparentThemed = withTheme(Subparent);
-        return <SubparentThemed user={user} logOut={logOut} />;
-      }}
-    </UserContext.Consumer>
-  );
-};
+// Огортаємо Subparent в контекст теми
+const SubparentWithTheme = withTheme(Subparent);
+
+// Огортаємо SubparentWithTheme в контекст User
+const SubParentWithThemeAndUser = withUser(SubparentWithTheme);
 
 export default SubParentWithThemeAndUser;
