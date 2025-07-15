@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { redirect } from 'react-router-dom';
-import * as yup from 'yup';
+import { SIGN_UP_SCHEMA } from '../../schemas';
 
 const initialState = {
   firsName: '',
@@ -9,22 +8,13 @@ const initialState = {
   password: '',
 };
 
-const SIGN_UP_SCHEMA = yup.object({
-  firstName: yup.string().required().min(1).max(50),
-  lastName: yup.string().required().min(1).max(50),
-  email: yup.string().required().email(),
-  password: yup
-    .string()
-    .required()
-    .matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/),
-});
-
 class SignUpForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       ...initialState,
+      isError: null,
     };
   }
 
@@ -36,11 +26,22 @@ class SignUpForm extends Component {
 
   submitHandler = (event) => {
     event.preventDefault();
-    console.log(SIGN_UP_SCHEMA.isValidSync(this.state));// потенційно, тут можна робити запит на сервер
+
+    try {
+      const userObject = SIGN_UP_SCHEMA.validateSync(this.state);
+
+      this.setState({
+        isError: null,
+      });
+    } catch (err) {
+      this.setState({
+        isError: err,
+      });
+    }
   };
 
   render() {
-    const { email, password, firstName, lastName } = this.state;
+    const { email, password, firstName, lastName, isError } = this.state;
     return (
       <form onSubmit={this.submitHandler}>
         <input
@@ -64,6 +65,7 @@ class SignUpForm extends Component {
           name="email"
           onChange={this.changeHandler}
         />
+        <p></p>
         <input
           type="text"
           value={password}
@@ -72,6 +74,10 @@ class SignUpForm extends Component {
           onChange={this.changeHandler}
         />
         <button>Login</button>
+
+        {isError && (
+          <p style={{ color: 'red', fontSize: '20px' }}>{isError.message}</p>
+        )}
       </form>
     );
   }
