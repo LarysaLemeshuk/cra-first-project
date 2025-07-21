@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-let count = 0;
 
 const NewCounterFunction = (props) => {
   const [counter, setCounter] = useState(0);

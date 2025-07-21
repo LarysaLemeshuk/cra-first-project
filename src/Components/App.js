@@ -1,6 +1,5 @@
 import React from 'react';
-import NewCounter from './NewCounter/NewCounter';
-import NewCounterFunction from './NewCounter/NewCounterFunction';
+import MouseTracker from './MouseTracker/MouseTracker';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -8,10 +7,8 @@ class App extends React.Component {
     this.state = {};
   }
 
- 
-
   render() {
-    return <NewCounterFunction  />;
+    return <MouseTracker />;
   }
 }
 export default App;
