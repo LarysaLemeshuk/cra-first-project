@@ -1,9 +1,10 @@
 import React from 'react';
-import Square from './Square/Square';
+
+import InputComponent from './InputComponent/InputComponent';
 
 class App extends React.Component {
   render() {
-    return <Square />;
+    return <InputComponent />;
   }
 }
 
