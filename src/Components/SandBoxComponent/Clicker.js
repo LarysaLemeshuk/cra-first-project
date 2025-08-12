@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 
 // Задача: у нас є кнопка, підрахувати кількість натиснень на неї
 
@@ -22,23 +22,19 @@ const Clicker = () => {
     setInputValue(Number(value));
   }, []);
 
-  //   const logValueHandler = () => {
-  //     let sum = 0;
-  //     for (let i = 0; i < inputValue; i++) {
-  //       sum += i;
-  //     }
-  //     console.log(sum);
-  //     console.log(inputValue);
-  //   };
+    const logValueHandler = () => {
+      let sum = 0;
+      for (let i = 0; i < inputValue; i++) {
+        sum += i;
+      }
+      return sum
+    };
 
-  const logValueHandler = useCallback(() => {
-    let sum = 0;
-    for (let i = 0; i < inputValue; i++) {
-      sum += i;
-    }
-    console.log(sum);
-    console.log(inputValue);
-  }, [inputValue]);
+   const memoizedValue = useMemo(() => logValueHandler(), [inputValue])
+
+   console.log(memoizedValue);
+
+
 
   return (
     <>
