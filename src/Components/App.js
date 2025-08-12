@@ -1,10 +1,9 @@
 import React from 'react';
-
-import InputComponent from './InputComponent/InputComponent';
+import Clicker from './SandBoxComponent/Clicker';
 
 class App extends React.Component {
   render() {
-    return <InputComponent />;
+    return <Clicker />;
   }
 }
 

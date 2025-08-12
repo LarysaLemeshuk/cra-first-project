@@ -1,57 +1,54 @@
-import React from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { addSeconds, format } from 'date-fns';
 
-class Counter extends React.Component {
-  constructor(props) {
-    super(props);
+const Counter = () => {
+  const [time, setTime] = useState(new Date(0, 0, 0, 0, 0, 0, 0)); // 00:00:00
+  const [isRunning, setIsRunning] = useState(true);
+  const clearBtnRef = useRef(null);
 
-    this.state = {
-      count: 0,
-    };
+  useEffect(() => {
+    clearBtnRef.current.disabled = true;
+  }, []);
 
-    this.intervalId = null;
-    console.log('constructor');
-  }
+  useEffect(() => {
+    // comnonentDidMount
+    if (isRunning) {
+      const intervalId = setInterval(() => {
+        setTime((time) => addSeconds(time, 1));
+      }, 1000);
 
-  start() {
-    this.intervalId = setInterval(() => {
-      const { count } = this.state;
+      return () => {
+        // componentWillUnmount
+        clearInterval(intervalId);
+      };
+    }
+  }, [isRunning]);
 
-      this.setState({
-        count: count + 1,
-      });
-    }, 1000);
+  const switchRunning = () => {
+    setIsRunning(!isRunning);
 
-   
-  }
+    if (isRunning === true) {
+      clearBtnRef.current.disabled = false;
+    } else {
+      clearBtnRef.current.disabled = true;
+    }
+  };
 
-  componentDidMount() {
-    console.log('componentDidMount');
-    this.start();
-  }
+  const clearHandler = () => {
+    setTime(new Date(0, 0, 0, 0, 0, 0, 0));
+  };
 
-  componentDidUpdate() {
-    console.log('componentDidUpdate');
-  }
-
-  shouldComponentUpdate() {
-    console.log('shouldComponentUpdate');
-    return true;
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.intervalId)
-    console.log('I will die');
-  }
-
-
-  render() {
-    console.log('render');
-    return (
-      <>
-        <h1>{this.state.count}</h1>;
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <h1>{format(time, 'HH:mm:ss')}</h1>
+      <button onClick={switchRunning}>
+        {isRunning === true ? 'Stop' : 'Start'}
+      </button>
+      <button  ref={clearBtnRef} onClick={clearHandler}>
+        Clear
+      </button>
+    </>
+  );
+};
 
 export default Counter;
