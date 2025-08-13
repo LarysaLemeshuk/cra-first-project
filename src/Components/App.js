@@ -1,9 +1,10 @@
 import React from 'react';
-import PhonesLoader from './PhonesLoader/PhonesLoader';
+
+import TvLoader from './TVLoader/TvLoader';
 
 class App extends React.Component {
   render() {
-    return <PhonesLoader />;
+    return <TvLoader />;
   }
 }
 
