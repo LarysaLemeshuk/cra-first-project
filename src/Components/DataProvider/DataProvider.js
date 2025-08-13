@@ -1,47 +1,31 @@
-import React, { Component } from 'react';
+import { useState, useEffect } from 'react';
 
-// 1. Компонента йде за даними
-// 2. Компонента отримує дані і кладе їх в стейт
-// 3. Компонента ділиться даними з кимось іншим, хто знає як треба відобразити ці дані
-
-class DataProvider extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      data: [],
-      isLoading: true,
-      isError: false,
-    };
-  }
-
-  componentDidMount() {
-    this.load();
-  }
-
-  load = () => {
-    this.props
-      .loadData()
+const useData = (loadData) => {
+  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    loadData()
       .then((data) => {
-        this.setState({
-          data,
-        });
+        setData(data);
       })
-      .catch((error) => {
-        this.setState({
-          isError: error,
-        });
+      .catch(() => {
+        setError(error);
       })
       .finally(() => {
-        this.setState({
-          isLoading: false,
-        });
+        setIsLoading(false);
       });
-  };
+  }, []);
 
-  render() {
-    return this.props.children(this.state);
-  }
-}
+  return { data, isLoading, error };
+};
 
-export default DataProvider;
+export default useData;
+
+/*
+
+1. Хук - JS функція (не клас!)
+2. Імʼя хуку має починатися з "use"
+3. У хуках ми можемо використовувати інші хуки.
+
+*/
