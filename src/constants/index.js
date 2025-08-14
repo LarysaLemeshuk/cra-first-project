@@ -5,6 +5,9 @@ const CONSTANTS = {
     LIGHT: 'LIGHT',
     DARK: 'DARK',
   },
+  ACTIONS: {
+    INPUT_CHANGE: 'INPUT_CHANGE'
+  }
 };
 
 export default CONSTANTS;
