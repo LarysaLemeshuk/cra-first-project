@@ -1,10 +1,10 @@
 import React from 'react';
-
-import TvLoader from './TVLoader/TvLoader';
+import RegistrationForm from './RegistrationForm/RegistrationForm';
+import Clicker from './RegistrationForm/RegistrationForm';
 
 class App extends React.Component {
   render() {
-    return <TvLoader />;
+    return <Clicker />;
   }
 }
 
