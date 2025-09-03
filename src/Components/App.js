@@ -1,21 +1,10 @@
-import React from 'react';
-import UserCard from './HomeWork/UserCard';
+import React, { Component } from 'react';
+import UserList from './HomeWork/UserList';
+import {responseData} from './HomeWork/data'
 
-class App extends React.Component {
+class App extends Component {
   render() {
-      const user = {
-        name: { first: "Emma", last: "Watson" },
-        email: "@EmmaWatson",
-        gender: "female",
-        picture: {
-          large: "https://images.mubicdn.net/images/cast_member/23751/cache-2603-1627313155/image-w856.jpg",
-        },
-        stats: {
-          tweets: 1337,
-          following: 561,
-          followers: 718,
-        }}  
-    return <UserCard user={user} />;
+    return <UserList usersArray={responseData} />;
   }
 }
 
