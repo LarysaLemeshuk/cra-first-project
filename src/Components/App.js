@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
-import UserList from './HomeWork/UserList';
-import {responseData} from './HomeWork/data'
+import React from 'react';
+import TodoList from './HomeWork/Todo/TodoList';
 
-class App extends Component {
-  render() {
-    return <UserList usersArray={responseData} />;
-  }
+function App() {
+  return (
+    <>
+      <TodoList />
+    </>
+  );
 }
 
+
 export default App;
+
