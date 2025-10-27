@@ -59,7 +59,7 @@ class TodoForm extends Component {
           value={taskText}
           name="taskText"
           onChange={this.changeHandler}
-          placeholder="Enter a task..."
+          placeholder="Enter a task...."
         />
         <button type="submit">Add task</button>
         {error && <p className={styles.error}>{error}</p>}

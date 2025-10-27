@@ -10,14 +10,14 @@ function TodoItem(props) {
   });
 
   return (
-    <li className={itemClass}>
+    <ul className={itemClass}>
       <span onClick={toggleCallback} className={styles.text}>
         {text}
       </span>
       <button onClick={delCallback} className={styles.deleteBtn}>
         x
       </button>
-    </li>
+    </ul>
   );
 }
 
